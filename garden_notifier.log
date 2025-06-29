@@ -11919,3 +11919,63 @@ except KeyboardInterrupt:
 [2025-06-29 12:00:59,870] [🔁] Resetting sprinkler alerts
 [2025-06-29 12:06:01,340] [🔁] Resetting seed alerts
 [2025-06-29 12:06:01,341] [🔁] Resetting sprinkler alerts
+[2025-06-29 17:15:19,159] 🌿 Garden Watcher started...
+[2025-06-29 17:19:21,012] [!] Error while checking stock: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+[2025-06-29 17:20:21,578] [🔁] Resetting seed alerts
+[2025-06-29 17:20:21,578] [🔁] Resetting sprinkler alerts
+[2025-06-29 17:25:22,230] [🔁] Resetting seed alerts
+[2025-06-29 17:25:22,231] [🔁] Resetting sprinkler alerts
+[2025-06-29 17:30:27,058] [🔁] Resetting seed alerts
+[2025-06-29 17:30:27,058] [🔁] Resetting sprinkler alerts
+[2025-06-29 17:36:21,916] [🔁] Resetting seed alerts
+[2025-06-29 17:36:21,917] [🔁] Resetting sprinkler alerts
+[2025-06-29 17:41:22,022] [🔁] Resetting seed alerts
+[2025-06-29 17:41:22,023] [🔁] Resetting sprinkler alerts
+[2025-06-29 17:45:24,592] [🔁] Resetting egg alerts
+[2025-06-29 17:46:22,329] [🔁] Resetting seed alerts
+[2025-06-29 17:46:22,330] [🔁] Resetting sprinkler alerts
+[2025-06-29 17:51:22,532] [🔁] Resetting seed alerts
+[2025-06-29 17:51:22,533] [🔁] Resetting sprinkler alerts
+[2025-06-29 17:56:22,913] [🔁] Resetting seed alerts
+[2025-06-29 17:56:22,913] [🔁] Resetting sprinkler alerts
+[2025-06-29 18:01:22,959] [🔁] Resetting seed alerts
+[2025-06-29 18:01:22,960] [🔁] Resetting sprinkler alerts
+[2025-06-29 18:07:23,323] [🔁] Resetting seed alerts
+[2025-06-29 18:07:23,324] [🔁] Resetting sprinkler alerts
+[2025-06-29 18:13:24,802] [🔁] Resetting seed alerts
+[2025-06-29 18:13:24,803] [🔁] Resetting sprinkler alerts
+[2025-06-29 18:15:26,638] [🔁] Resetting egg alerts
+[2025-06-29 18:15:26,639] [♥] Sending heartbeat...
+[2025-06-29 18:19:24,376] [🔁] Resetting seed alerts
+[2025-06-29 18:19:24,377] [🔁] Resetting sprinkler alerts
+[2025-06-29 18:25:24,089] [🔁] Resetting seed alerts
+[2025-06-29 18:25:24,090] [🔁] Resetting sprinkler alerts
+[2025-06-29 18:30:24,622] [🔁] Resetting seed alerts
+[2025-06-29 18:30:24,623] [🔁] Resetting sprinkler alerts
+[2025-06-29 18:36:24,650] [🔁] Resetting seed alerts
+[2025-06-29 18:36:24,651] [🔁] Resetting sprinkler alerts
+[2025-06-29 18:42:23,958] [🔁] Resetting seed alerts
+[2025-06-29 18:42:23,959] [🔁] Resetting sprinkler alerts
+[2025-06-29 18:46:24,109] [🔁] Resetting egg alerts
+[2025-06-29 18:47:24,373] [🔁] Resetting seed alerts
+[2025-06-29 18:47:24,374] [🔁] Resetting sprinkler alerts
+[2025-06-29 18:52:24,623] [🔁] Resetting seed alerts
+[2025-06-29 18:52:24,623] [🔁] Resetting sprinkler alerts
+[2025-06-29 18:57:25,811] [🔁] Resetting seed alerts
+[2025-06-29 18:57:25,812] [🔁] Resetting sprinkler alerts
+[2025-06-29 19:00:28,409] [🥚] Rare egg found: Mythical Egg
+[2025-06-29 19:03:27,899] [🔁] Resetting seed alerts
+[2025-06-29 19:03:27,900] [🔁] Resetting sprinkler alerts
+[2025-06-29 19:09:27,898] [🔁] Resetting seed alerts
+[2025-06-29 19:09:27,898] [🔁] Resetting sprinkler alerts
+[2025-06-29 19:15:31,081] [🔁] Resetting seed alerts
+[2025-06-29 19:15:31,082] [🔁] Resetting sprinkler alerts
+[2025-06-29 19:15:31,083] [♥] Sending heartbeat...
+[2025-06-29 19:16:26,467] [🔁] Resetting egg alerts
+[2025-06-29 19:17:25,785] [🥚] Rare egg found: Mythical Egg
+[2025-06-29 19:21:27,854] [🔁] Resetting seed alerts
+[2025-06-29 19:21:27,860] [🔁] Resetting sprinkler alerts
+[2025-06-29 19:21:43,284] 🌿 Garden Watcher started...
+[2025-06-29 19:21:44,034] [🌱] Rare seed found: Carrot
+[2025-06-29 19:21:44,035] [!] Failed to send seed webhook: 'carrot'
+[2025-06-29 19:21:44,036] [🥚] Rare egg found: Mythical Egg

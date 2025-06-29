@@ -43,7 +43,7 @@ notified_sprinklers = set()
 last_heartbeat = time.time()
 
 # 🌱 Top seeds to track
-RARE_SEEDS = ["Sugar Apple", "Loquat", "Feijoa", "Pitcher Plant"]
+RARE_SEEDS = ["Sugar Apple", "Loquat", "Feijoa", "Pitcher Plant", "Carrot"]
 
 # 🥚 Rare eggs
 RARE_EGGS = ["Bug Egg", "Mythical Egg", "Paradise Egg", "Bee Egg"]
