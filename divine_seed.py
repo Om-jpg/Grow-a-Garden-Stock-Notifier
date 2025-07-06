@@ -1,10 +1,8 @@
-#import pdb; pdb.set_trace()
 import requests
 from bs4 import BeautifulSoup
 import time
 from datetime import datetime
 import logging
-
 
 # 📝 Logging setup
 logging.basicConfig(
@@ -24,35 +22,45 @@ STOCK_URL = "https://growagardenvalues.com/stock/stocks.php"
 
 # 🔔 Webhook URLs
 WEBHOOKS = {
+    # Seeds
     "sugar apple": "https://maker.ifttt.com/trigger/sugar_apple/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
-    "pitcher plant": "https://maker.ifttt.com/trigger/pitcher_plant/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
-    "loquat": "https://maker.ifttt.com/trigger/loquat/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
-    "feijoa": "https://maker.ifttt.com/trigger/feijoa/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
+    "beanstalk": "https://maker.ifttt.com/trigger/beanstalk/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
+    "burning bud": "https://maker.ifttt.com/trigger/burning_bud/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
+    "ember lily": "https://maker.ifttt.com/trigger/ember_lily/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
+    "mushroom": "https://maker.ifttt.com/trigger/mushroom/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
+
+    # Eggs
     "bug egg": "https://maker.ifttt.com/trigger/bug_egg/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
     "mythical egg": "https://maker.ifttt.com/trigger/mythic_egg/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
     "paradise egg": "https://maker.ifttt.com/trigger/paradise_egg/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
     "bee egg": "https://maker.ifttt.com/trigger/bee_egg/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
+
+    # Gear
     "master sprinkler": "https://maker.ifttt.com/trigger/master_sprinkler/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
+    "godly sprinkler": "https://maker.ifttt.com/trigger/godly_sprinkler/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
+    "tanning mirror": "https://maker.ifttt.com/trigger/tanning_mirror/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
+
+    # Heartbeat
     "heartbeat": "https://maker.ifttt.com/trigger/script_heartbeat/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq"
 }
 
 # 🧠 Memory
 notified_seeds = set()
 notified_eggs = set()
-notified_sprinklers = set()
+notified_gear = set()
 last_heartbeat = time.time()
 
 # 🌱 Top seeds to track
-RARE_SEEDS = ["Sugar Apple", "Loquat", "Feijoa", "Pitcher Plant", "Carrot"]
+RARE_SEEDS = ["Sugar Apple", "Beanstalk", "Burning Bud", "Ember Lily", "Mushroom"]
 
 # 🥚 Rare eggs
 RARE_EGGS = ["Bug Egg", "Mythical Egg", "Paradise Egg", "Bee Egg"]
 
-# 💧 Sprinklers
-RARE_SPRINKLERS = ["Master Sprinkler"]
+# ⚙️ Rare gear
+RARE_GEAR = ["Master Sprinkler", "Godly Sprinkler", "Tanning Mirror"]
 
 def check_stock():
-    global notified_seeds, notified_eggs, notified_sprinklers
+    global notified_seeds, notified_eggs, notified_gear
     try:
         res = requests.get(STOCK_URL, headers={"User-Agent": "Mozilla/5.0"}, timeout=10)
         res.raise_for_status()
@@ -79,15 +87,15 @@ def check_stock():
                     log(f"[!] Failed to send egg webhook: {e}")
                 notified_eggs.add(e)
 
-        for sprinkler in RARE_SPRINKLERS:
-            s = sprinkler.lower()
-            if s in all_text and s not in notified_sprinklers:
-                log(f"[🚿] Sprinkler found: {sprinkler}")
+        for gear in RARE_GEAR:
+            g = gear.lower()
+            if g in all_text and g not in notified_gear:
+                log(f"[⚙️] Rare gear found: {gear}")
                 try:
-                    requests.post(WEBHOOKS[s], json={"value1": f"🚿 {sprinkler} is in stock!"}, timeout=5)
+                    requests.post(WEBHOOKS[g], json={"value1": f"⚙️ {gear} is in stock!"}, timeout=5)
                 except Exception as e:
-                    log(f"[!] Failed to send sprinkler webhook: {e}")
-                notified_sprinklers.add(s)
+                    log(f"[!] Failed to send gear webhook: {e}")
+                notified_gear.add(g)
 
     except Exception as e:
         log(f"[!] Error while checking stock: {e}")
@@ -103,9 +111,9 @@ def send_heartbeat():
 log("🌿 Garden Watcher started...")
 last_seed_reset = time.time()
 last_egg_reset = time.time()
-last_sprinkler_reset = time.time()
+last_gear_reset = time.time()
 
-LOOP_INTERVAL = 60  # Run every 60 seconds
+LOOP_INTERVAL = 60  # seconds
 
 try:
     while True:
@@ -114,29 +122,25 @@ try:
         check_stock()
         now = time.time()
 
-        # 🔁 Reset every 5 min (seeds & sprinkler)
         if now - last_seed_reset >= 300:
             log("[🔁] Resetting seed alerts")
             notified_seeds.clear()
             last_seed_reset = now
 
-        if now - last_sprinkler_reset >= 300:
-            log("[🔁] Resetting sprinkler alerts")
-            notified_sprinklers.clear()
-            last_sprinkler_reset = now
+        if now - last_gear_reset >= 300:
+            log("[🔁] Resetting gear alerts")
+            notified_gear.clear()
+            last_gear_reset = now
 
-        # 🔁 Reset eggs every 30 min
         if now - last_egg_reset >= 1800:
             log("[🔁] Resetting egg alerts")
             notified_eggs.clear()
             last_egg_reset = now
 
-        # ♥ Heartbeat every hour
         if now - last_heartbeat >= 3600:
             send_heartbeat()
             last_heartbeat = now
 
-        # ⏱ Adjust sleep to maintain exact interval
         loop_duration = time.monotonic() - loop_start
         sleep_time = max(0, LOOP_INTERVAL - loop_duration)
         time.sleep(sleep_time)
