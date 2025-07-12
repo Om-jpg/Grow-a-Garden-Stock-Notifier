@@ -28,7 +28,6 @@ WEBHOOKS = {
     "burning bud": "https://maker.ifttt.com/trigger/burning_bud/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
     "ember lily": "https://maker.ifttt.com/trigger/ember_lily/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
     "mushroom": "https://maker.ifttt.com/trigger/mushroom/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
-    "pumpkin": "https://maker.ifttt.com/trigger/pumpkin/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
 
     # Eggs
     "bug egg": "https://maker.ifttt.com/trigger/bug_egg/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
@@ -52,14 +51,13 @@ last_heartbeat = time.time()
 
 
 # 🌱 Top seeds to track
-RARE_SEEDS = ["Sugar Apple", "Beanstalk", "Burning Bud", "Ember Lily", "Mushroom", "Pumpkin"]
+RARE_SEEDS = ["Sugar Apple", "Beanstalk", "Burning Bud", "Ember Lily", "Mushroom"]
 
 # 🥚 Rare eggs
 RARE_EGGS = ["Bug Egg", "Mythical Egg", "Paradise Egg", "Bee Egg"]
 
 # ⚙️ Rare gear
 RARE_GEAR = ["Master Sprinkler", "Tanning Mirror"]
-
 
 def check_stock():
     global notified_seeds, notified_eggs, notified_gear
