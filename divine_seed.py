@@ -20,7 +20,6 @@ def log(msg):
 # 🌐 Stock page
 STOCK_URL = "https://growagardenvalues.com/stock/stocks.php"
 
-# 🔔 Webhook URLs
 WEBHOOKS = {
     # Seeds
     "sugar apple": "https://maker.ifttt.com/trigger/sugar_apple/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
@@ -28,6 +27,7 @@ WEBHOOKS = {
     "burning bud": "https://maker.ifttt.com/trigger/burning_bud/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
     "ember lily": "https://maker.ifttt.com/trigger/ember_lily/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
     "mushroom": "https://maker.ifttt.com/trigger/mushroom/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
+    "giant pinecone seed": "https://maker.ifttt.com/trigger/giant_pinecone_seed/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
 
     # Eggs
     "bug egg": "https://maker.ifttt.com/trigger/bug_egg/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
@@ -38,6 +38,7 @@ WEBHOOKS = {
     # Gear
     "master sprinkler": "https://maker.ifttt.com/trigger/master_sprinkler/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
     "tanning mirror": "https://maker.ifttt.com/trigger/tanning_mirror/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
+    "levelup lollipop": "https://maker.ifttt.com/trigger/levelup_lollipop/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
 
     # Heartbeat
     "heartbeat": "https://maker.ifttt.com/trigger/script_heartbeat/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq"
@@ -51,13 +52,14 @@ last_heartbeat = time.time()
 
 
 # 🌱 Top seeds to track
-RARE_SEEDS = ["Sugar Apple", "Beanstalk", "Burning Bud", "Ember Lily", "Mushroom"]
+RARE_SEEDS = ["Sugar Apple", "Beanstalk", "Burning Bud", "Ember Lily", "Mushroom", "Giant Pinecone Seed"]
 
 # 🥚 Rare eggs
 RARE_EGGS = ["Bug Egg", "Mythical Egg", "Paradise Egg", "Bee Egg"]
 
 # ⚙️ Rare gear
-RARE_GEAR = ["Master Sprinkler", "Tanning Mirror"]
+RARE_GEAR = ["Master Sprinkler", "Tanning Mirror", "Levelup Lollipop"]
+
 
 def check_stock():
     global notified_seeds, notified_eggs, notified_gear
