@@ -20,29 +20,8 @@ def log(msg):
 # 🌐 Stock page
 STOCK_URL = "https://growagardenvalues.com/stock/stocks.php"
 
-WEBHOOKS = {
-    # Seeds
-    "sugar apple": "https://maker.ifttt.com/trigger/sugar_apple/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
-    "beanstalk": "https://maker.ifttt.com/trigger/beanstalk/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
-    "burning bud": "https://maker.ifttt.com/trigger/burning_bud/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
-    "ember lily": "https://maker.ifttt.com/trigger/ember_lily/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
-    "mushroom": "https://maker.ifttt.com/trigger/mushroom/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
-    "giant pinecone seed": "https://maker.ifttt.com/trigger/giant_pinecone_seed/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
-
-    # Eggs
-    "bug egg": "https://maker.ifttt.com/trigger/bug_egg/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
-    "mythical egg": "https://maker.ifttt.com/trigger/mythic_egg/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
-    "paradise egg": "https://maker.ifttt.com/trigger/paradise_egg/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
-    "bee egg": "https://maker.ifttt.com/trigger/bee_egg/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
-
-    # Gear
-    "master sprinkler": "https://maker.ifttt.com/trigger/master_sprinkler/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
-    "tanning mirror": "https://maker.ifttt.com/trigger/tanning_mirror/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
-    "levelup lollipop": "https://maker.ifttt.com/trigger/levelup_lollipop/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq",
-
-    # Heartbeat
-    "heartbeat": "https://maker.ifttt.com/trigger/script_heartbeat/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq"
-}
+# 🔗 Single Webhook (your IFTTT webhook)
+WEBHOOK_URL = "https://maker.ifttt.com/trigger/garden_alert/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq"
 
 # 🧠 Memory
 notified_seeds = set()
@@ -50,17 +29,50 @@ notified_eggs = set()
 notified_gear = set()
 last_heartbeat = time.time()
 
+# 🌱 Rare Seeds
+RARE_SEEDS = [
+    "Sugar Apple",
+    "Beanstalk",
+    "Burning Bud",
+    "Ember Lily",
+    "Mushroom",
+    "Giant Pinecone Seed",
+    "Elder Strawberry Seed"
+]
 
-# 🌱 Top seeds to track
-RARE_SEEDS = ["Sugar Apple", "Beanstalk", "Burning Bud", "Ember Lily", "Mushroom", "Giant Pinecone Seed"]
+# 🥚 Rare Eggs
+RARE_EGGS = [
+    "Bug Egg",
+    "Mythical Egg",
+    "Paradise Egg",
+    "Bee Egg"
+]
 
-# 🥚 Rare eggs
-RARE_EGGS = ["Bug Egg", "Mythical Egg", "Paradise Egg", "Bee Egg"]
+# ⚙️ Rare Gear
+RARE_GEAR = [
+    "Master Sprinkler",
+    "Tanning Mirror",
+    "Levelup Lollipop"
+]
 
-# ⚙️ Rare gear
-RARE_GEAR = ["Master Sprinkler", "Tanning Mirror", "Levelup Lollipop"]
+# 📤 Webhook Sender
+def send_alert(emoji, item):
+    try:
+        message = f"{emoji} {item} is in stock!"
+        log(f"[🔔] Sending alert: {message}")
+        requests.post(WEBHOOK_URL, json={"value1": message}, timeout=5)
+    except Exception as e:
+        log(f"[!] Failed to send alert for {item}: {e}")
 
+# 💓 Heartbeat
+def send_heartbeat():
+    log("[♥] Sending heartbeat...")
+    try:
+        requests.post(WEBHOOK_URL, json={"value1": f"✅ Script running - {datetime.now()}"} , timeout=5)
+    except Exception as e:
+        log(f"[!] Heartbeat failed: {e}")
 
+# 🔍 Check Stock
 def check_stock():
     global notified_seeds, notified_eggs, notified_gear
     try:
@@ -72,44 +84,28 @@ def check_stock():
         for seed in RARE_SEEDS:
             s = seed.lower()
             if s in all_text and s not in notified_seeds:
-                log(f"[🌱] Rare seed found: {seed}")
-                try:
-                    requests.post(WEBHOOKS[s], json={"value1": f"🌱 {seed} is in stock!"}, timeout=5)
-                except Exception as e:
-                    log(f"[!] Failed to send seed webhook: {e}")
+                log(f"[🌱] Found rare seed: {seed}")
+                send_alert("🌱", seed)
                 notified_seeds.add(s)
 
         for egg in RARE_EGGS:
             e = egg.lower()
             if e in all_text and e not in notified_eggs:
-                log(f"[🥚] Rare egg found: {egg}")
-                try:
-                    requests.post(WEBHOOKS[e], json={"value1": f"🥚 {egg} is in stock!"}, timeout=5)
-                except Exception as e:
-                    log(f"[!] Failed to send egg webhook: {e}")
+                log(f"[🥚] Found rare egg: {egg}")
+                send_alert("🥚", egg)
                 notified_eggs.add(e)
 
         for gear in RARE_GEAR:
             g = gear.lower()
             if g in all_text and g not in notified_gear:
-                log(f"[⚙️] Rare gear found: {gear}")
-                try:
-                    requests.post(WEBHOOKS[g], json={"value1": f"⚙️ {gear} is in stock!"}, timeout=5)
-                except Exception as e:
-                    log(f"[!] Failed to send gear webhook: {e}")
+                log(f"[⚙️] Found rare gear: {gear}")
+                send_alert("⚙️", gear)
                 notified_gear.add(g)
 
     except Exception as e:
-        log(f"[!] Error while checking stock: {e}")
+        log(f"[!] Error during stock check: {e}")
 
-def send_heartbeat():
-    log("[♥] Sending heartbeat...")
-    try:
-        requests.post(WEBHOOKS["heartbeat"], json={"value1": f"✅ Script running - {datetime.now()}"}, timeout=5)
-    except Exception as e:
-        log(f"[!] Heartbeat failed: {e}")
-
-# 🕐 Main loop
+# ▶️ Main loop
 log("🌿 Garden Watcher started...")
 last_seed_reset = time.time()
 last_egg_reset = time.time()
