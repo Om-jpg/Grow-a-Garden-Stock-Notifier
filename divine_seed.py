@@ -18,7 +18,7 @@ def log(msg):
     logging.info(msg)
 
 # 🌐 Stock page
-STOCK_URL = "https://growagardenvalues.com/stock/stocks.php"
+STOCK_URL = "https://arcaiuz.com/grow-a-garden-stock"
 
 # 🔗 Single Webhook (your IFTTT webhook)
 WEBHOOK_URL = "https://maker.ifttt.com/trigger/garden_alert/with/key/d-fwXYxGn_at_dAHN8A_KuBvikAagdCJn_roBV9HRQq"
@@ -36,8 +36,8 @@ RARE_SEEDS = [
     "Burning Bud",
     "Ember Lily",
     "Mushroom",
-    "Giant Pinecone Seed",
-    "Elder Strawberry Seed"
+    "Giant Pinecone",
+    "Elder Strawberry"
 ]
 
 # 🥚 Rare Eggs
@@ -52,7 +52,8 @@ RARE_EGGS = [
 RARE_GEAR = [
     "Master Sprinkler",
     "Tanning Mirror",
-    "Levelup Lollipop"
+    "Levelup Lollipop",
+    "Grandmaster Sprinkler"
 ]
 
 # 📤 Webhook Sender
